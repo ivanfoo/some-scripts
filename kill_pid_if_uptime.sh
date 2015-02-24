@@ -25,6 +25,6 @@ for pid in "${pid_list[@]}"; do
         echo -e "Let\'s kill $pid"
         kill -9 $pid
     else
-        echo "No PIDS to kill :("
+        echo "No PID to kill :("
     fi
 done
