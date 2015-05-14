@@ -26,7 +26,7 @@ for dir in $dirlist; do
         sdirlist=`ls -d1 $pattern2`
 
         for sdir in $sdirlist; do
-        basename=`basename  $sdir`
+            basename=`basename  $sdir`
 
             if [ $basename -lt $month ]; then
                 echo "Moving ${sdir} to ${_sdir}"
