@@ -3,7 +3,7 @@
 path=$1
 
 if [ -z $path ]; then
-    echo "Usage: drop_oldies PATH"
+    echo "Usage: mv_oldies PATH"
     exit 1
 fi
 
