@@ -3,7 +3,7 @@
 path=$1
 
 if [ -z $path ]; then
-    echo "Usage: drop_oldies PATH"
+    echo "Usage: rm_oldies PATH"
     exit 1
 fi
 
@@ -17,9 +17,8 @@ for dir in $dirlist; do
     basename=`basename $dir`
 
     if [ $basename -lt $year ];then
-        echo "Moving ${dir} to ${_dir}"
-        _dir="${path}/_${basename}"
-        mv $dir $_dir
+        echo "Dropping $dir"
+        rm -rf $dir
 
     elif [ $basename -eq $year ]; then
         pattern2="$dir/[0-1][0-9]"
@@ -29,9 +28,8 @@ for dir in $dirlist; do
             basename=`basename  $sdir`
 
             if [ $basename -lt $month ]; then
-                echo "Moving ${sdir} to ${_sdir}"
-                _sdir="${dir}/_${basename}"
-                mv $sdir $_sdir
+                echo "Dropping $sdir"
+                rm -rf $sdir
             fi
         done
     fi
