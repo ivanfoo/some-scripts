@@ -12,14 +12,13 @@ if [ -z $passw ]; then
     passw=$user
 fi
 
-## CONFIG ##
 tmp_dir='/tmp/load_soap'
 file='oc4j_extended_101350.zip'
 remote_file="ftp://ftp.ocu.es/OracleDB/$file"
-## END CONFIG ##
 
 mkdir $tmp_dir
-curl $remote_file -o $tmp_dir
+echo "Downloading $remote_file..."
+curl $remote_file -o $tmp_dir && echo "Done"
 unzip $tmp_dir/$file -d $tmp_dir/${file%%.*}
 OC4J_HOME=$tmp_dir/${file%%.*}
 
@@ -29,5 +28,7 @@ loadjava -f -v -r -genmissing -u ${user}/${passw} $OC4J_HOME/j2ee/home/lib/mail.
 loadjava -f -v -r -genmissing -u ${user}/${passw} $OC4J_HOME/j2ee/home/lib/servlet.jar
 loadjava -f -v -r -genmissing -u ${user}/${passw} $OC4J_HOME/lib/dms.jar
 loadjava -f -v -r -genmissing -u ${user}/${passw} $OC4J_HOME/webservices/lib/soap.jar
+
+rm -rf $tmp_dir
 
 exit 0
